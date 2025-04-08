@@ -5,6 +5,7 @@ import RecentSearches from './components/RecentSearches';
 import Forecast from './components/Forecast';
 import Loader from './components/Loader';
 import './App.css';
+import { FiMenu } from 'react-icons/fi'; 
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -13,7 +14,7 @@ function App() {
   const [error, setError] = useState(null);
   const [recentSearches, setRecentSearches] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
   const fetchWeatherData = useCallback(async (city) => {
@@ -67,13 +68,16 @@ function App() {
 
   return (
     <div className={`app ${darkMode ? 'dark' : 'light'}`}>
+      {/* Hamburger Button */}
+      <button className="hamburger-btn" onClick={toggleSidebar}>
+      <FiMenu size={24} />
+      </button>
+
       <RecentSearches 
         searches={recentSearches} 
         onSearch={fetchWeatherData}
         isOpen={sidebarOpen}
-        onToggle={toggleSidebar}
-      />
-      
+     />
       <div className={`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="theme-toggle" onClick={toggleTheme}>
           {darkMode ? '☀️' : '🌙'}

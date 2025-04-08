@@ -1,13 +1,9 @@
 import React from 'react';
 import './RecentSearches.css';
 
-const RecentSearches = ({ searches, onSearch, isOpen, onToggle }) => {
+const RecentSearches = ({ searches, onSearch, isOpen }) => {
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-      <button className="toggle-btn" onClick={onToggle}>
-        {isOpen ? '◄' : '►'}
-      </button>
-      
       {isOpen && (
         <>
           <h3>Recent Searches</h3>
